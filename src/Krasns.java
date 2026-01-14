@@ -24,8 +24,8 @@ public class Krasns {
 	}
 	
 	public String PicasInfo(){
-		return "---------------------------------------"
-	+"\n Klienta informācija:"
+		return
+	"\n Klienta informācija:"
 	+"\n Vārds: "+klientaNsk
 	+"\n Adrese: "+klientaAdrese
 	+"\n Telefons: "+klientaTel
@@ -38,7 +38,8 @@ public class Krasns {
 	+"\n Cenas informācija:"
 	+"\n Picas cena: "+cena+" Eiro"
 	+"\n Piegāde(Jā/Nē): "+piegade
-	+"\n Papildus piemaksa par piegādi: "+piegadesCena;
+	+"\n Papildus piemaksa par piegādi: "+piegadesCena
+	+"\n -----------------------------------------------";
 		
 		
 	}
