@@ -1,5 +1,15 @@
-# PICAS NYAM NYAM
-## Garsigas picinas, pecpus dienā
+# Picerijas programma
+## Picerijas programma veidota kā pēdējais darbs ar Javu/Eclipse pie Rāvalda
 ## Valters Baltgalvis
-Aagaga boogoo
-- [X] - programma
+### Darāmie darbi:
+- [ ] - Iespēja Reģistrēties/Ieejiet darbinieku kontā
+- [ ] - Veidot pasūtījumus
+  - [ ] - Picas
+  - [ ] - Dzērieni
+  - [ ] - Našķi
+  - [ ] - Klienta info
+    - [ ] - Klienta info saglabāšana
+  - [ ] - Aprēķini
+- [ ] - Apskatīt aktīvos pasūtījumus
+- [ ] - Saglabāt veiktos pasūtījumus
+  - [ ] - Apskatīt šos veiktos pasūtījumus
