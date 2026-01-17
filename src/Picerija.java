@@ -12,34 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Picerija {
-	
-	public static Krasns pica=null;
-	
-	static void PicasIzveide() {
-		
-		String Vards="Labaka";
-		String Adrese="Abc123";
-		String Tel="+371 123456789";
-		int Izmers=5;
-		String Merce="Tomatu";
-		ArrayList<String> Piedevas = new ArrayList<String>();
-		
-		Piedevas.add("Sampinjoni");
-		
-		 pica = new Krasns("Viktors", "Liepaja", "345677", 15, "Motor ella", Piedevas, 12.49, true, 7.50);
-		
-	}
-	
-	static void Apskatit() {
-		
-        
-        JOptionPane.showMessageDialog(null, pica.PicasInfo());
-		
-	}
 
 	public static void main(String[] args) {
 		
-		 JFrame frame = new JFrame("Pizza pasta");
+		 JFrame frame = new JFrame("Picerijas konta ieeja");
 		 frame.setSize(640, 540);
 	     frame.setLocationRelativeTo(null);
 	     
@@ -53,9 +29,44 @@ public class Picerija {
 	        
 	        JButton Pieteikties = new JButton("Pieteikties");
 	        Pieteikties.addActionListener(e -> {
-	        	Pieteiksanas.Audio();
-	        }
-	        );
+	        	Pieteiksanas.Success();
+	        	
+	        	panel.removeAll();
+	        	
+	        	 JButton IzveidotPasutijumu = new JButton("Izveidot jaunu pasūtijumu");
+	        	 IzveidotPasutijumu.addActionListener(p -> {
+	        		 Krasns.PicasIzveide();
+	        	 });
+	        	 JButton ApskatitAktivos = new JButton("Apskatīt aktīvos pasūtījumus");
+	        	 ApskatitAktivos.addActionListener(p -> {
+	        		 Pasutijumi.ApskatitAktivos();
+	        	 });
+	        	 JButton ApskatitNeaktivos = new JButton("Apskatīt neaktīvos pasūtījumus");
+	        	 ApskatitNeaktivos.addActionListener(p -> {
+	        		 Pasutijumi.ApskatitNeaktivos();
+	        	 });
+	        	 
+	        	 Dimension size = new Dimension(180, 45);
+	        	 IzveidotPasutijumu.setPreferredSize(size);
+	        	 ApskatitAktivos.setPreferredSize(size);
+	        	 ApskatitNeaktivos.setPreferredSize(size);
+		        
+	        	 IzveidotPasutijumu.setAlignmentX(Component.CENTER_ALIGNMENT);
+	        	 ApskatitAktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
+	        	 ApskatitNeaktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		        panel.add(Box.createVerticalGlue());
+		        panel.add(IzveidotPasutijumu);
+		        panel.add(Box.createVerticalStrut(100));
+		        panel.add(ApskatitAktivos);
+		        panel.add(Box.createVerticalStrut(100));
+		        panel.add(ApskatitNeaktivos);
+		        panel.add(Box.createVerticalGlue());
+
+	            panel.revalidate();
+	            panel.repaint();
+	        	
+	        });
 	        
 	        
 	        JButton Pierakstities = new JButton("Pierakstīties");
@@ -78,14 +89,7 @@ public class Picerija {
 	        panel.add(Box.createVerticalStrut(100));
 	        panel.add(Pierakstities);
 	        panel.add(Box.createVerticalGlue());
-	   /*  
-	     JTextField Field = new JTextField(15);
-	     JTextField countryCode = new JTextField(2);
-	        countryCode.setText("+91");
-	        countryCode.setEnabled(false);
-	        panel.add(countryCode);
-	        panel.add(Field);
-	        */
+	  
 	        frame.setContentPane(panel);
 
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
