@@ -1,3 +1,5 @@
+import java.awt.Component;
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,11 +9,14 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class Pieteiksanas {
@@ -55,25 +60,30 @@ public class Pieteiksanas {
 	
 	public static void Meklet(String Mekletais, String Parole) {
 		try {
+			BufferedReader Lasitajs = (new BufferedReader(new FileReader("Darbinieki/Saraksts")));
 			
-			File Darbinieki = new File("/Saraksts");
-			File Paroles = new File("/Paroles");
-			BufferedReader Lasitajs = (new BufferedReader(new FileReader("Darbinieki")));
-		
-		String Darbinieks;
+			JPanel panel = new JPanel();
+			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		
-		do{
-			Darbinieks = Lasitajs.readLine();
-			System.out.println("Mekletais: "+Darbinieks);
-			System.out.println("Ievaditais: "+Mekletais);
-			if(Darbinieks.equals(Mekletais)) {
-				Success();
-				System.out.println("Good job");
-			}else {
-				System.out.println("Fuck you");
+			StringBuilder info = new StringBuilder();
+			String linija;
+
+			while ((linija = Lasitajs.readLine()) != null) {
+			    info.append(linija).append('\n');
 			}
-		}while(Lasitajs.readLine()!=null);
+
+			String beigas = info.toString();
+			
+			panel.add(new JLabel("<html>"+beigas.replace("\n", "<br>")));
+			
+			 JScrollPane scrollPane = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+			JFrame frame = new JFrame("Pasutijumi");
+			frame.add(scrollPane);
+			frame.setSize(640, 540);
+	    frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
 		
 		Lasitajs.close();
 		
@@ -104,13 +114,27 @@ public class Pieteiksanas {
 	    		 
 	});
 	     
-	     	panel.add(User); 
-	        panel.add(Password);
-	        panel.add(Apstiprinat);
+	     Dimension size = new Dimension(90, 45);
+	     User.setPreferredSize(size);
+	     Password.setPreferredSize(size);
+	     Apstiprinat.setPreferredSize(new Dimension(180, 45));
+        
+    	 User.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	 Password.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	 Apstiprinat.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+    	panel.add(Box.createVerticalStrut(100));
+        panel.add(Box.createVerticalGlue());
+        panel.add(User);
+        panel.add(Box.createVerticalStrut(100));
+        panel.add(Password);
+        panel.add(Box.createVerticalStrut(100));
+        panel.add(Password);
+        panel.add(Box.createVerticalStrut(100));
+        panel.add(Apstiprinat);
+        panel.add(Box.createVerticalGlue());
 		 
 		 frame.setContentPane(panel);
-
-	      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	      frame.setVisible(true);
 		

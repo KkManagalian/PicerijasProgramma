@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Krasns {
 	
-	String klientaNsk, klientaAdrese, klientaLokacija, klientaTel;
-	int izmers;
+	String klientaNsk, klientaAdrese, klientaLokacija;
+	int izmers, klientaTel;
 	double cena, piegadesCena;
 	String merce;
 	Boolean piegade;
@@ -11,7 +11,7 @@ public class Krasns {
 	ArrayList<String> dzerieni;
 	ArrayList<String> uzkodas;
 	
-	public Krasns(String KlientaNsk, String KlientaAdrese, String KlientaLokacija, String KlientaTel, int Izmers, String Merce,
+	public Krasns(String KlientaNsk, String KlientaAdrese, String KlientaLokacija, int KlientaTel, int Izmers, String Merce,
 			ArrayList<String> Piedevas,ArrayList<String> Dzerieni, ArrayList<String> Uzkodas, double Cena, Boolean Piegade, double PiegadesCena){
 		
 		this.klientaNsk=KlientaNsk;
@@ -33,8 +33,8 @@ public class Krasns {
 	"\n Klienta informācija:"
 	+"\n Vārds: "+klientaNsk
 	+"\n Adrese: "+klientaAdrese
-	+"\n Adrese: "+klientaLokacija
-	+"\n Telefons: "+klientaTel
+	+"\n Lokacija: "+klientaLokacija
+	+"\n Telefons: (+371)"+klientaTel
 	+"\n ----------------------------------------------"
 	+"\n Picas informācija:"
 	+"\n Picas diametrs: "+izmers
@@ -51,11 +51,5 @@ public class Krasns {
 	+"\n Papildus piemaksa par piegādi: "+piegadesCena
 	+"\n -----------------------------------------------";	
 	}
-	
-	public static Double Aprekins() {
-		Double fuck=0.0;
-		
-		
-		return fuck;
-	}
+
 }

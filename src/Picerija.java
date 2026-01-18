@@ -97,13 +97,13 @@ public class Picerija {
 				return;
 			}
 			
-			String Adrese = VirknesParbaude("Ievadiet klienta Adrese", "Ista iela B4");
+			String Adrese = VirknesParbaude("Ievadiet klienta Adrese", "Lauku iela 50a");
 			if(Adrese==null) {
 				return;
 			}
 			
-			String Telefons =VirknesParbaude("Ievadiet klienta telefonu", "1234567");
-			if(Telefons==null) {
+			int Telefons =SkaitlaParbaude("Ievadiet klienta telefonu", 999999, 9999999);
+			if(Telefons==-1) {
 				return;
 			}
 			
@@ -111,7 +111,7 @@ public class Picerija {
 			
 			String[] PicasIzmeri= {"15", "30", "45", "60"};
 			String Izmeri = (String)JOptionPane.showInputDialog(null,
-					"Izvēlies picas izmēru", "Izmēru izvēle",
+					"Izvēlies picas izmēru (cm)", "Izmēru izvēle",
 					JOptionPane.QUESTION_MESSAGE, null, PicasIzmeri, PicasIzmeri[0]);
 			int Izmers=0;
 			if(Izmeri==null) {
@@ -145,7 +145,7 @@ public class Picerija {
 			
 			ArrayList<String> Piedevas = new ArrayList<String>();
 			
-			int PiedevuSk= SkaitlaParbaude("Ievadiet cik piedevas būs",1 ,10);
+			int PiedevuSk= SkaitlaParbaude("Ievadiet cik piedevas būs (0-10)",0 ,10);
 			if(PiedevuSk==-1) {
 				return;
 			}
@@ -164,7 +164,7 @@ public class Picerija {
 			
 			ArrayList<String> Dzeriens = new ArrayList<String>();
 
-			int DzerienuSk= SkaitlaParbaude("Ievadiet cik dzērieni būs",1 ,6);
+			int DzerienuSk= SkaitlaParbaude("Ievadiet cik dzērieni būs (0-6)",0 ,6);
 			if(DzerienuSk==-1) {
 				return;
 			}
@@ -172,7 +172,7 @@ public class Picerija {
 			
 			for(int i=0;i<DzerienuSk;i++) {
 			String Dzeramais = (String)JOptionPane.showInputDialog(null,
-					"Izvēlies picas izmēru", "Izmēru izvēle",
+					"Izvēlies dzērienu", "Dzērienu izvēle",
 					JOptionPane.QUESTION_MESSAGE, null, DzerienuIzv, DzerienuIzv[0]);
 			Cena+=4.35;
 			if(Dzeramais==null) {
@@ -183,7 +183,7 @@ public class Picerija {
 
 			ArrayList<String> Uzkodas = new ArrayList<String>();
 			
-			int UzkoduSk= SkaitlaParbaude("Ievadiet cik uzkodas būs",1 ,6);
+			int UzkoduSk= SkaitlaParbaude("Ievadiet cik uzkodas būs (0-6)",0 ,6);
 			if(UzkoduSk==-1) {
 				return;
 			}
@@ -191,7 +191,7 @@ public class Picerija {
 			
 			for(int i=0;i<UzkoduSk;i++) {
 			String Uzkoda = (String)JOptionPane.showInputDialog(null,
-					"Izvēlies picas izmēru", "Izmēru izvēle",
+					"Izvēlies uzkodas", "Uzkodu izvēle",
 					JOptionPane.QUESTION_MESSAGE, null, UzkoduIzv, UzkoduIzv[0]);
 			switch(Uzkoda) {
 			case"Frī kartupeļi":
@@ -264,7 +264,7 @@ public class Picerija {
 	        
 	        JButton Pieteikties = new JButton("Pieteikties");
 	        Pieteikties.addActionListener(_ -> {
-	        	Pieteiksanas.Success();
+	        	Pieteiksanas.Pieteikties();
 	        	
 	        	panel.removeAll();
 	        	
@@ -272,14 +272,17 @@ public class Picerija {
 	        	 IzveidotPasutijumu.addActionListener(_ -> {
 	        		 PasutijumuIzveide();
 	        	 });
+	        	 
 	        	 JButton ApskatitAktivos = new JButton("Apskatīt aktīvos pasūtījumus");
 	        	 ApskatitAktivos.addActionListener(_ -> {
 	        		 ApskatitAktivos();
 	        	 });
+	        	 
 	        	 JButton PabeigtPasutijumu = new JButton("Pabeigt pirmo pasūtījumu sarakstā");
-	        	 ApskatitAktivos.addActionListener(_ -> {
+	        	 PabeigtPasutijumu.addActionListener(_ -> {
 	        		 PabeigtPasutijumu();
 	        	 });
+	        	 
 	        	 JButton ApskatitNeaktivos = new JButton("Apskatīt neaktīvos pasūtījumus");
 	        	 ApskatitNeaktivos.addActionListener(_ -> {
 	        		 Pasutijumi.ApskatitNeaktivos();
