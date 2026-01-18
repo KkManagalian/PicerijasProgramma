@@ -2,16 +2,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -27,36 +23,24 @@ public class Picerija {
 	public static ArrayList<String> AktivPasutijumi = new ArrayList<String>();
  	
  	public static void Success(){
-		try {
-        	File Morning = new File("Audio/Good-Morning.wav");
-        	File Startup = new File("Audio/Startup.wav");
-        	
-        	AudioInputStream audioStream;
-			
-        	audioStream = AudioSystem.getAudioInputStream(Startup);
-			Clip clip1 = AudioSystem.getClip();					
-            clip1.open(audioStream);
-            clip1.start();
-            JOptionPane.showMessageDialog(null, "Sveicinam jūs ar šo fantastiskos dienu, cienijamais darbiniek.");
-            Thread.sleep(1500);
-            
-            audioStream = AudioSystem.getAudioInputStream(Morning);
-			Clip clip2 = AudioSystem.getClip();
-            clip2.open(audioStream);
-            clip2.start();
-		} catch (UnsupportedAudioFileException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+ 		try {
+ 			
+ 		    Clip clip1 = AudioSystem.getClip();
+ 		    AudioInputStream ais1 = AudioSystem.getAudioInputStream( Picerija.class.getResource("/Audio/Startup.wav"));
+ 		    clip1.open(ais1);
+ 		    clip1.start();
+
+ 		    JOptionPane.showMessageDialog(null,"Sveicinam jūs ar šo fantastiskos dienu, cienījamais darbiniek."
+ 		    );
+
+ 		    Clip clip2 = AudioSystem.getClip();
+ 		    AudioInputStream ais2 = AudioSystem.getAudioInputStream(Picerija.class.getResource("/Audio/Good-Morning.wav"));
+ 		    clip2.open(ais2);
+ 		    clip2.start();
+
+ 		} catch (Exception e) {
+ 		    e.printStackTrace();
+ 		}
 		
 	}
 	
