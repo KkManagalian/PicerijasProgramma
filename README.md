@@ -2,14 +2,14 @@
 ## Picerijas programma veidota kā pēdējais darbs ar Javu/Eclipse pie Rāvalda
 ## Valters Baltgalvis
 ### Darāmie darbi:
-- [ ] - Iespēja Reģistrēties/Ieejiet darbinieku kontā
-- [ ] - Veidot pasūtījumus
-  - [ ] - Picas
-  - [ ] - Dzērieni
-  - [ ] - Našķi
-  - [ ] - Klienta info
-    - [ ] - Klienta info saglabāšana
-  - [ ] - Aprēķini
-- [ ] - Apskatīt aktīvos pasūtījumus
-- [ ] - Saglabāt veiktos pasūtījumus
-  - [ ] - Apskatīt šos veiktos pasūtījumus
+- [X] - Veidot pasūtījumus
+  - [X] - Picas
+  - [X] - Dzērieni
+  - [X] - Našķi
+  - [X] - Klienta info
+  - [X] - Aprēķini
+- [X] - Apskatīt aktīvos pasūtījumus
+- [X] - Saglabāt veiktos pasūtījumus
+  - [X] - Apskatīt šos veiktos pasūtījumus
+- [ ] - Dizains
+- [ ] - Diagrammas
