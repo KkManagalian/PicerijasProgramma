@@ -2,9 +2,16 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,6 +25,40 @@ public class Picerija {
 	
 	public static Krasns pica = null;
 	public static ArrayList<String> AktivPasutijumi = new ArrayList<String>();
+ 	
+ 	public static void Success(){
+		try {
+        	File Morning = new File("Audio/Good-Morning.wav");
+        	File Startup = new File("Audio/Startup.wav");
+        	
+        	AudioInputStream audioStream;
+			
+        	audioStream = AudioSystem.getAudioInputStream(Startup);
+			Clip clip1 = AudioSystem.getClip();					
+            clip1.open(audioStream);
+            clip1.start();
+            JOptionPane.showMessageDialog(null, "Sveicinam jūs ar šo fantastiskos dienu, cienijamais darbiniek.");
+            Thread.sleep(1500);
+            
+            audioStream = AudioSystem.getAudioInputStream(Morning);
+			Clip clip2 = AudioSystem.getClip();
+            clip2.open(audioStream);
+            clip2.start();
+		} catch (UnsupportedAudioFileException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
 	
 	public static String VirknesParbaude(String zinojums, String noklusejums) {
 		String virkne;
@@ -253,8 +294,8 @@ public class Picerija {
 	JFrame frame = new JFrame("Picerija");
 		 frame.setSize(640, 540);
 	     frame.setLocationRelativeTo(null);
-	     
-	 	JPanel panel = new JPanel();
+	    
+	  	JPanel panel = new JPanel();
 		 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	     
 	     
@@ -262,111 +303,68 @@ public class Picerija {
 	        frame.setIconImage(icon);
 
 	        
-	        JButton Pieteikties = new JButton("Pieteikties");
+	        JButton Pieteikties = new JButton("Startēt programmu");
 	        Pieteikties.addActionListener(_ -> {
-	        	Pieteiksanas.Pieteikties();
+	        	
+	        	Success();
 	        	
 	        	panel.removeAll();
 	        	
-	        	 JButton IzveidotPasutijumu = new JButton("Izveidot jaunu pasūtijumu");
-	        	 IzveidotPasutijumu.addActionListener(_ -> {
-	        		 PasutijumuIzveide();
-	        	 });
-	        	 
-	        	 JButton ApskatitAktivos = new JButton("Apskatīt aktīvos pasūtījumus");
-	        	 ApskatitAktivos.addActionListener(_ -> {
-	        		 ApskatitAktivos();
-	        	 });
-	        	 
-	        	 JButton PabeigtPasutijumu = new JButton("Pabeigt pirmo pasūtījumu sarakstā");
-	        	 PabeigtPasutijumu.addActionListener(_ -> {
-	        		 PabeigtPasutijumu();
-	        	 });
-	        	 
-	        	 JButton ApskatitNeaktivos = new JButton("Apskatīt neaktīvos pasūtījumus");
-	        	 ApskatitNeaktivos.addActionListener(_ -> {
-	        		 Pasutijumi.ApskatitNeaktivos();
-	        	 });
-	        	 
-	        	 Dimension size = new Dimension(180, 45);
-	        	 IzveidotPasutijumu.setPreferredSize(size);
-	        	 ApskatitAktivos.setPreferredSize(size);
-	        	 PabeigtPasutijumu.setPreferredSize(size);
-	        	 ApskatitNeaktivos.setPreferredSize(size);
-		        
-	        	 IzveidotPasutijumu.setAlignmentX(Component.CENTER_ALIGNMENT);
-	        	 ApskatitAktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
-	        	 PabeigtPasutijumu.setAlignmentX(Component.CENTER_ALIGNMENT);
-	        	 ApskatitNeaktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
+	       	 JButton IzveidotPasutijumu = new JButton("Izveidot jaunu pasūtijumu");
+	       	 IzveidotPasutijumu.addActionListener(_ -> {
+	       		 PasutijumuIzveide();
+	       	 });
+	       	 
+	       	 JButton ApskatitAktivos = new JButton("Apskatīt aktīvos pasūtījumus");
+	       	 ApskatitAktivos.addActionListener(_ -> {
+	       		 ApskatitAktivos();
+	       	 });
+	       	 
+	       	 JButton PabeigtPasutijumu = new JButton("Pabeigt pirmo pasūtījumu sarakstā");
+	       	 PabeigtPasutijumu.addActionListener(_ -> {
+	       		 PabeigtPasutijumu();
+	       	 });
+	       	 
+	       	 JButton ApskatitNeaktivos = new JButton("Apskatīt neaktīvos pasūtījumus");
+	       	 ApskatitNeaktivos.addActionListener(_ -> {
+	       		 Pasutijumi.ApskatitNeaktivos();
+	       	 });
+	       	 
+	       	 Dimension size = new Dimension(180, 45);
+	       	 IzveidotPasutijumu.setPreferredSize(size);
+	       	 ApskatitAktivos.setPreferredSize(size);
+	       	 PabeigtPasutijumu.setPreferredSize(size);
+	       	 ApskatitNeaktivos.setPreferredSize(size);
+	           
+	       	 IzveidotPasutijumu.setAlignmentX(Component.CENTER_ALIGNMENT);
+	       	 ApskatitAktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
+	       	 PabeigtPasutijumu.setAlignmentX(Component.CENTER_ALIGNMENT);
+	       	 ApskatitNeaktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		        panel.add(Box.createVerticalGlue());
-		        panel.add(IzveidotPasutijumu);
-		        panel.add(Box.createVerticalStrut(100));
-		        panel.add(ApskatitAktivos);
-		        panel.add(Box.createVerticalStrut(100));
-		        panel.add(PabeigtPasutijumu);
-		        panel.add(Box.createVerticalStrut(100));
-		        panel.add(ApskatitNeaktivos);
-		        panel.add(Box.createVerticalGlue());
+	           panel.add(Box.createVerticalGlue());
+	           panel.add(IzveidotPasutijumu);
+	           panel.add(Box.createVerticalStrut(100));
+	           panel.add(ApskatitAktivos);
+	           panel.add(Box.createVerticalStrut(100));
+	           panel.add(PabeigtPasutijumu);
+	           panel.add(Box.createVerticalStrut(100));
+	           panel.add(ApskatitNeaktivos);
+	           panel.add(Box.createVerticalGlue());
 
-	            panel.revalidate();
-	            panel.repaint();
-	        	
+	           panel.revalidate();
+	           panel.repaint();
+	       	
+	        
 	        });
-	        
-	        
-	        JButton Pierakstities = new JButton("Pierakstīties");
-	        
-	        Pierakstities.addActionListener(_ -> {
-	        	panel.removeAll();
-	        	
-	        	 JButton IzveidotPasutijumu = new JButton("Izveidot jaunu pasūtijumu");
-	        	 IzveidotPasutijumu.addActionListener(_ -> {
-	        		 PasutijumuIzveide();
-	        	 });
-	        	 JButton ApskatitAktivos = new JButton("Apskatīt aktīvos pasūtījumus");
-	        	 ApskatitAktivos.addActionListener(_ -> {
-	        		 ApskatitAktivos();
-	        	 });
-	        	 JButton ApskatitNeaktivos = new JButton("Apskatīt neaktīvos pasūtījumus");
-	        	 ApskatitNeaktivos.addActionListener(_ -> {
-	        		 Pasutijumi.ApskatitNeaktivos();
-	        	 });
-	        	 
-	        	 Dimension size = new Dimension(180, 45);
-	        	 IzveidotPasutijumu.setPreferredSize(size);
-	        	 ApskatitAktivos.setPreferredSize(size);
-	        	 ApskatitNeaktivos.setPreferredSize(size);
-		        
-	        	 IzveidotPasutijumu.setAlignmentX(Component.CENTER_ALIGNMENT);
-	        	 ApskatitAktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
-	        	 ApskatitNeaktivos.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-		        panel.add(Box.createVerticalGlue());
-		        panel.add(IzveidotPasutijumu);
-		        panel.add(Box.createVerticalStrut(100));
-		        panel.add(ApskatitAktivos);
-		        panel.add(Box.createVerticalStrut(100));
-		        panel.add(ApskatitNeaktivos);
-		        panel.add(Box.createVerticalGlue());
-
-	            panel.revalidate();
-	            panel.repaint();
-	        }
-	        );
 	        
 	        Dimension size = new Dimension(180, 45);
 
 	        Pieteikties.setPreferredSize(size);
-	        Pierakstities.setPreferredSize(size);
 	        
 	        Pieteikties.setAlignmentX(Component.CENTER_ALIGNMENT);
-	        Pierakstities.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 	        panel.add(Box.createVerticalGlue());
 	        panel.add(Pieteikties);
-	        panel.add(Box.createVerticalStrut(100));
-	        panel.add(Pierakstities);
 	        panel.add(Box.createVerticalGlue());
 	  
 	        frame.setContentPane(panel);
