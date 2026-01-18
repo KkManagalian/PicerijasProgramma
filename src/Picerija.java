@@ -30,8 +30,7 @@ public class Picerija {
  		    clip1.open(ais1);
  		    clip1.start();
 
- 		    JOptionPane.showMessageDialog(null,"Sveicinam jūs ar šo fantastiskos dienu, cienījamais darbiniek."
- 		    );
+ 		    JOptionPane.showMessageDialog(null,"Sveicinam jūs ar šo fantastiskos dienu, cienījamais darbiniek.");
 
  		    Clip clip2 = AudioSystem.getClip();
  		    AudioInputStream ais2 = AudioSystem.getAudioInputStream(Picerija.class.getResource("/Audio/Good-Morning.wav"));
