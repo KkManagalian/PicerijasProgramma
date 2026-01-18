@@ -20,7 +20,6 @@ public class Pieteiksanas {
     //countryCode.setEnabled(false);
 	
 	public static void Success(){
-        JOptionPane.showMessageDialog(null, "Sveicinam jūs ar šo fantastiskos dienu, cienijamais darbiniek.");
 		try {
         	File Morning = new File("Audio/Good-Morning.wav");
         	File Startup = new File("Audio/Startup.wav");
@@ -31,14 +30,13 @@ public class Pieteiksanas {
 			Clip clip1 = AudioSystem.getClip();					
             clip1.open(audioStream);
             clip1.start();
-            
+            JOptionPane.showMessageDialog(null, "Sveicinam jūs ar šo fantastiskos dienu, cienijamais darbiniek.");
             Thread.sleep(1500);
             
             audioStream = AudioSystem.getAudioInputStream(Morning);
 			Clip clip2 = AudioSystem.getClip();
             clip2.open(audioStream);
             clip2.start();
-            
 		} catch (UnsupportedAudioFileException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -98,7 +96,7 @@ public class Pieteiksanas {
 	     JTextField User = new JTextField(20);
 	     JTextField Password = new JTextField(20);
 	     JButton Apstiprinat = new JButton("Pieteikties");
-	     Apstiprinat.addActionListener(e ->{
+	     Apstiprinat.addActionListener(_ ->{
 	    		 
 	    	 String	Darbinieks=User.getText();
 	    	 String	Parole=Password.getText();
